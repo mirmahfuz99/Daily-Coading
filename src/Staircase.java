@@ -1,18 +1,28 @@
+import java.util.*;
 
 public class Staircase {
 
-	public static void main(String[] args) {
-		int i, j , k;
-		for(i=5;i>=1;i--){
-			for(j=1;j<i;j++){
-				System.out.print(" ");
-			}
-			for(k=5;k>=i;k--){
-				System.out.print("*");
-			}
-			System.out.println();
-		}
-
-	}
-
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter your Inputs");
+        int numInputs = scan.nextInt();
+        scan.close();
+        
+        for(int i = 1; i <= numInputs; i++){ // rows
+            
+            int j = numInputs;
+            
+            // loop to print (size - i) spaces
+            while(j-- > i) {
+                System.out.print(" ");
+            }
+            // loop to print (i) #s
+            while(j-- >= 0) {
+                System.out.print("#");
+            }
+            
+            System.out.println();
+        }
+        
+    }
 }
