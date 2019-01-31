@@ -8,8 +8,8 @@ public class PuttingIntoPractice {
 
 	public static void main(String[] args) {
 		
-		Trader mir = new Trader("Mir","Dhaka");
-		Trader mahfuz = new Trader("Mir","Dhaka");
+		Trader mir = new Trader("Md. Mahfuz","Dhaka");
+		Trader mahfuz = new Trader("Mir","Cambridge");
         Trader alan = new Trader("Alan","Cambridge");
         Trader brian = new Trader("Brian","Cambridge");
 		
@@ -29,13 +29,26 @@ public class PuttingIntoPractice {
         		                               .collect(toList());
         System.out.println(tr2011);
         
-        
+        //What are all the unique cities where the traders work ?
         List<String> trCity = transactions.stream()
         		                               .map(transaction -> transaction.getTrader().getCity())
         		                               .distinct()
         		                               .collect(toList());
         
         System.out.println(trCity);
+        
+     // Query 3: Find all traders from Dhaka and sort them by name.
+        List<Trader> traders = transactions.stream()
+        		                           .map(Transaction::getTrader)
+        		                           .filter(trader -> trader.getCity().equals("Dhaka"))
+        		                           .distinct()
+        		                           .sorted(comparing(Trader::getName))
+        		                           .collect(toList());
+        System.out.println(traders);
+        
+        
+        
+        
 
 	}
 
