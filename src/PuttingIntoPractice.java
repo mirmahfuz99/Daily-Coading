@@ -24,6 +24,7 @@ public class PuttingIntoPractice {
         
         // Query 1: Find all transactions from year 2011 and sort them by value (small to high).
         List<Transaction> tr2011 = transactions.stream()
+        		//pass a predicate to filter to select transaction from 2011
         		                               .filter(transaction -> transaction.getYear() == 2011)
         		                               .sorted(comparing(Transaction:: getValue))
         		                               .collect(toList());
@@ -31,7 +32,9 @@ public class PuttingIntoPractice {
         
         //What are all the unique cities where the traders work ?
         List<String> trCity = transactions.stream()
+        		//extract all city from Trader associated with transaction
         		                               .map(transaction -> transaction.getTrader().getCity())
+        		                               //select only unique city
         		                               .distinct()
         		                               .collect(toList());
         
@@ -45,6 +48,17 @@ public class PuttingIntoPractice {
         		                           .sorted(comparing(Trader::getName))
         		                           .collect(toList());
         System.out.println(traders);
+       
+        
+        //Return a String of all traders name sorted by alphabetically 
+        String tradersName = transactions.stream()
+        		                               .map(transaction -> transaction.getTrader().getName())
+        		                               .distinct()
+        		                               .sorted()
+       //Combine each name one by one to form a String that concatenates all the names 		                               
+        		                               .reduce("",(n1,n2) -> n1 +"" + n2);
+        
+        System.out.println(tradersName);
         
         
         
