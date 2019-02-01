@@ -10,14 +10,14 @@ public class PuttingIntoPractice {
 		
 		Trader mir = new Trader("Md. Mahfuz","Dhaka");
 		Trader mahfuz = new Trader("Mir","Cambridge");
-        Trader alan = new Trader("Alan","Cambridge");
+        Trader alan = new Trader("Alan","London");
         Trader brian = new Trader("Brian","Cambridge");
 		
 		List<Transaction> transactions = Arrays.asList(
             new Transaction(brian, 2011, 300), 
             new Transaction(mahfuz, 2011, 710),	
             new Transaction(mahfuz, 2012, 710),	
-            new Transaction(mir,   2015, 1000),
+            new Transaction(alan,   2015, 1000),
             new Transaction(mir,   2015, 1000)
         );	
         
@@ -59,6 +59,24 @@ public class PuttingIntoPractice {
         		                               .reduce("",(n1,n2) -> n1 +"" + n2);
         
         System.out.println(tradersName);
+        
+        //Are any traders based London
+        boolean LondonBased = transactions.stream()
+        		                          .anyMatch(transaction -> transaction.getTrader()
+        		                        		                         .getCity()
+        		                        		                         .equals("London"));
+        
+        System.out.println(LondonBased);
+        
+        //print all transaction value based on Cambridge
+        transactions.stream().filter(t -> "Cambridge".equals(t.getTrader().getCity()))
+        .map(Transaction::getValue)
+        .forEach(System.out::println);
+        
+        
+        
+        
+        
         
         
         
